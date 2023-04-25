@@ -30,8 +30,6 @@
   --font-weight-text2: 700;
 }
 
-/* https://i.postimg.cc/mgZKYBZ4/Mu-eco.png */
-
 html {
   background-color: var(--blue-light-300);
 }
@@ -77,6 +75,7 @@ body {
   position: absolute;
   content: "Ingrese el texto aquí";
   margin-right: 16px;
+  color: var(--gray-300);
 }
 
 @media (min-width: 640px) {
@@ -135,7 +134,7 @@ body {
   display: flex;
   gap: 6px;
   font-size: 12px;
-  color: var(--gray-dark);
+  color: var(--gray-400);
 }
 
 .enter-text > img {
@@ -284,7 +283,7 @@ button:hover {
 
 .btn-copy-clicked {
   animation-name: btn-clicked;
-  animation-duration: 5s;
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
 }
 
