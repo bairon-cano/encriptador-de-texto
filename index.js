@@ -1,15 +1,15 @@
 const $ = (id) => document.querySelector(id); //función para obtener selector
 
+//obtengo los elementos que cambiarán
 const input = $(".fake-textarea");
 const spanRules = $(".span-rules");
 const showResult = $(".show-result");
 const showResultText = $(".show-result > p");
 
+//obtengo los botones
 const btnEncrypt = $(".btn-encrypt");
 const btnDecrypt = $(".btn-decrypt");
 const btnCopy = $("#btn-copy");
-
-const acentos = ["á", "é", "í", "ó", "ú"];
 
 //variables
 let stringResult = "";
@@ -29,13 +29,6 @@ function validateString() {
 }
 
 function processString(inputString, type) {
-  //valido que la cadena no sea vacía
-  // if (inputString.length == 0) {
-  //   chartInvalid = true;
-  //   validateString();
-  //   return;
-  // }
-
   //creo un array con array adentro que contiene el caracter a buscar y el valor con el que será reemplazado
   let arrayKeys = [
     ["e", "enter"],
@@ -68,7 +61,6 @@ function processString(inputString, type) {
     }
   }
   stringResult = inputString;
-  console.log(inputString);
 }
 
 //función para limpiar el input y mostrar el resultado
