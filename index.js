@@ -2,6 +2,8 @@ const $ = (id) => document.querySelector(id); //función para obtener selector
 
 //obtengo los elementos que cambiarán
 const input = $(".fake-textarea");
+input.focus(); //pongo el foco en el input
+const spanSign = $(".span-sign");
 const spanRules = $(".span-rules");
 const showResult = $(".show-result");
 const showResultText = $(".show-result > p");
@@ -19,9 +21,11 @@ function validateString() {
   if (chartInvalid) {
     spanRules.innerText = "Ingrese un texto válido";
     spanRules.style.color = "#FF0000";
+    spanSign.style.background = "#FF0000";
     setTimeout(() => {
-      spanRules.style.color = "#495057";
       spanRules.innerText = "Solo letras minúsculas y sin acentos";
+      spanRules.style.color = "#495057";
+      spanSign.style.background = "#343a40";
     }, 5000);
     chartInvalid = false;
     return true;
