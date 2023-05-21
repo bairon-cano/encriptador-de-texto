@@ -28,6 +28,8 @@
   --font-family-text: "Inter", sans-serif;
   --font-weight-text1: 400;
   --font-weight-text2: 700;
+
+  --animation-fade-in: fade-in 1.5s ease-in-out forwards;
 }
 
 html {
@@ -43,13 +45,43 @@ body {
   font-weight: var(--font-weight-text1);
   font-size: 16px;
   padding: 0;
+  animation: loading-animation 1.2s ease-in-out forwards;
+  -webkit-animation: loading-animation 1.2s ease-in-out forwards;
+}
+
+header h1 {
+  display: flex;
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
   width: 32px;
   height: 48px;
-  margin: 24px 0px 40px 16px;
+  position: relative;
+  margin: 24px 0px 80px 16px;
+  background-image: url("./images/logo.svg");
   cursor: pointer;
+}
+
+.logo:hover::before {
+  content: "lura";
+  font-size: 60px;
+  margin-left: 35px;
+  opacity: 0;
+  animation: var(--animation-fade-in);
+  -webkit-animation: var(--animation-fade-in);
+}
+
+.logo:hover::after {
+  content: "LATAM";
+  font-size: 30px;
+  position: absolute;
+  bottom: -35px;
+  left: 38px;
+  opacity: 0;
+  animation: var(--animation-fade-in);
+  -webkit-animation: var(--animation-fade-in);
 }
 
 .container {
@@ -76,58 +108,6 @@ body {
   content: "Ingrese el texto aquí";
   margin-right: 16px;
   color: var(--gray-300);
-}
-
-@media (min-width: 640px) {
-  .logo {
-    margin: 50px 0px 80px 40px;
-  }
-
-  .container {
-    margin: 0px 40px;
-  }
-
-  .fake-textarea {
-    min-height: 40vh;
-    max-width: 680px;
-  }
-}
-
-@media (min-width: 940px) {
-  body {
-    display: flex;
-    justify-content: center;
-  }
-
-  .logo {
-    margin: 40px 84px 80px 84px;
-  }
-
-  .container {
-    box-sizing: border-box;
-    flex-grow: 1;
-    flex-direction: row;
-    gap: 50px;
-    margin: 40px 40px 40px 0;
-  }
-
-  .section-main {
-    width: 50%;
-    flex-grow: 1;
-  }
-
-  .fake-textarea {
-    margin-top: 100px;
-    margin-bottom: 50px;
-    max-width: 680px;
-    min-height: 50vh;
-  }
-}
-
-@media (min-width: 1400px) {
-  .fake-textarea {
-    height: 58vh;
-  }
 }
 
 .enter-text {
@@ -188,12 +168,6 @@ button:hover {
   gap: 20px;
 }
 
-@media (min-width: 640px) {
-  .section-btns {
-    flex-direction: row;
-  }
-}
-
 .btn-encrypt {
   background-color: var(--blue-dark-300);
   color: var(--white);
@@ -247,6 +221,7 @@ button:hover {
   font-weight: var(--font-weight-text1);
 }
 
+.show-result > h3::selection,
 .show-result > p::selection {
   background-color: var(--blue-dark-300);
   color: var(--white);
@@ -293,18 +268,57 @@ button:hover {
   animation-timing-function: ease-in-out;
 }
 
-@keyframes btn-clicked {
-  0% {
-    color: var(--white);
-    background-color: var(--blue-dark-500);
+/* responsive design*/
+
+@media (min-width: 640px) {
+  .logo {
+    margin: 50px 0px 80px 40px;
   }
 
-  80% {
-    color: var(--blue-dark-300);
+  .container {
+    margin: 0px 40px;
+  }
+
+  .fake-textarea {
+    min-height: 40vh;
+    max-width: 680px;
+  }
+
+  .section-btns {
+    flex-direction: row;
   }
 }
 
 @media (min-width: 940px) {
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo {
+    margin: 40px 84px 80px 84px;
+  }
+
+  .container {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-direction: row;
+    gap: 50px;
+    margin: 40px 40px 40px 0;
+  }
+
+  .section-main {
+    width: 50%;
+    flex-grow: 1;
+  }
+
+  .fake-textarea {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    max-width: 680px;
+    min-height: 50vh;
+  }
+
   .show-result[isEmpty="true"] > .no-message {
     display: inline;
     width: 100%;
@@ -325,5 +339,44 @@ button:hover {
 
   .show-result[isEmpty="false"] {
     justify-content: space-between;
+  }
+}
+
+@media (min-width: 1400px) {
+  .fake-textarea {
+    height: 58vh;
+  }
+}
+
+/*Animations*/
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes btn-clicked {
+  0% {
+    color: var(--white);
+    background-color: var(--blue-dark-500);
+  }
+
+  80% {
+    color: var(--blue-dark-300);
+  }
+}
+
+@keyframes loading-animation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
